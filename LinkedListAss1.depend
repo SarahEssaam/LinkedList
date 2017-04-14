@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1492181683 source:d:\2ndterm\ds\mycodes\linkedlistass1\main.cpp
+	<iostream>
+	"List.h"
+
+1491695404 source:d:\2ndterm\ds\mycodes\linkedlistass1\src\list.cpp
+	"List.h"
+
+1492182006 d:\2ndterm\ds\mycodes\linkedlistass1\include\list.h
+	"Node.h"
+	<cstddef>
+	<cstdlib>
+	<stdlib.h>
+	<iostream>
+
+1491683445 d:\2ndterm\ds\mycodes\linkedlistass1\include\node.h
+	<cstdlib>
+
+1491683445 source:d:\2ndterm\ds\mycodes\linkedlistass1\src\node.cpp
+	"Node.h"
+
+1492181598 source:d:\2ndterm\ds\mycodes\linkedlistass1\src\poly.cpp
+	"Poly.h"
+	"List.h"
+
+1492181613 d:\2ndterm\ds\mycodes\linkedlistass1\include\poly.h
+	"List.h"
+	<string>
+

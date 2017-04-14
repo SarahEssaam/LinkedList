@@ -4,8 +4,32 @@ using namespace std;
 
 int main()
 {
-    cout << "Hello world!" << endl;
-    List<float>* l = new List<>();
-    l->addFront(1.2);
-    return 0;
+    List l;
+    l.addFront(3);
+    l.reverseList();
+    l.printALll();
+cout<<endl;
+    l.addFront(2);
+    l.printALll();
+cout<<endl;
+    l.reverseList();
+    l.printALll();
+cout<<endl;
+    l.addFront(1);
+    l.printALll();
+cout<<endl;
+    l.reverseList();
+    l.printALll();
+cout<<endl;
+    l.clear();
+    l.addFront(5);
+    l.addFront(4);
+    l.addFront(3);
+    l.addFront(2);
+    l.addFront(1);
+    l.printALll();
+cout<<endl;
+    l.reverseList();
+    l.printALll();
+   // return 0;
 }

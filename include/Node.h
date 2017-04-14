@@ -1,17 +1,20 @@
 #ifndef NODE_H
 #define NODE_H
-#include<cstdlib>
+//#include <cstddef>
+#include <cstdlib>
+//#include<stdlib.h>
 
-template <class T> class Node{
+class Node{
 	private :
-		T data;
+		float data;
 		Node* nextNode;
 	public:
         Node();
-        Node(T d);
-        void setData(T d);
+        Node(float d);
+        void setData(float d);
         void setNextNode(Node* n);
-        T getData();
+        float getData();
         Node* getNextNode();
+        friend class List;
 };
 #endif // NODE_H

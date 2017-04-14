@@ -27,3 +27,29 @@
 	"List.h"
 	<string>
 
+1492181598 source:d:\2ndterm\ds\mycodes\ass1\linkedlist\src\poly.cpp
+	"Poly.h"
+	"List.h"
+
+1492181613 d:\2ndterm\ds\mycodes\ass1\linkedlist\include\poly.h
+	"List.h"
+	<string>
+
+1492191676 d:\2ndterm\ds\mycodes\ass1\linkedlist\include\list.h
+	"Node.h"
+	<cstdlib>
+	<iostream>
+
+1492185540 d:\2ndterm\ds\mycodes\ass1\linkedlist\include\node.h
+	<cstdlib>
+
+1492191362 source:d:\2ndterm\ds\mycodes\ass1\linkedlist\main.cpp
+	<iostream>
+	"List.h"
+
+1492191748 source:d:\2ndterm\ds\mycodes\ass1\linkedlist\src\list.cpp
+	"List.h"
+
+1492183509 source:d:\2ndterm\ds\mycodes\ass1\linkedlist\src\node.cpp
+	"Node.h"
+

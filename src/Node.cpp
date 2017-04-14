@@ -1,21 +1,21 @@
 #include "Node.h"
-template<class T> Node<T>::Node(){
+Node::Node(){
     data = 0;
     nextNode = NULL;
 }
-template<class T> Node<T>::Node(T d){
+Node::Node(float d){
     data = d;
 }
-template<class T> void Node<T>::setData(T d){
+void Node::setData(float d){
     data = d;
 }
-template<class T> void Node<T>::setNextNode(Node* n){
+void Node::setNextNode(Node* n){
     nextNode = n;
 }
-template<class T> T Node<T>::getData(){
+float Node::getData(){
     return data;
 }
-template<class T> Node<T>* Node<T>::getNextNode(){
+Node* Node::getNextNode(){
     return nextNode;
 }
 

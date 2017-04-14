@@ -1,43 +1,43 @@
 #include "List.h"
 
-template<class T> List<T>::List(){
+List::List(){
     head = NULL;
 }
-template<class T> List<T>::~List(){
+List::~List(){
     clear();
 }
-template<class T> bool List<T>::isEmpty(){
+bool List::isEmpty(){
     return(head==NULL);
 }
-template<class T> int List<T>::getSize(){
+int List::getSize(){
     int size = 0;
-    Node<T>* temp = head;
+    Node* temp = head;
     while(temp!=NULL){
         size++;
         temp = temp->getNextNode();
     }
     return size;
 }
-template<class T> T List<T>::getAverage(){
+float List::getAverage(){
     if(isEmpty()) return 0;
-    T sum = 0;
+    float sum = 0;
     int size = 0;
-    Node<T>* temp = head;
+    Node* temp = head;
     while(temp!=NULL){
         size++;
         sum += temp->getData();
-        temp = temp->next;
+        temp = temp->nextNode;
     }
     sum = sum/size;
     return sum;
 }
-template<class T> void List<T>::reverseList(){
+void List::reverseList(){
     if((isEmpty())||(head->getNextNode()==NULL))  //one element or none
             return;
     int size = getSize();
     int last = size/2 + size%2;
     int first = last -1;
-    while(true){
+    while(1){
         if(last>=size)
         break;
     swap(getNode(first),getNode(last));
@@ -46,18 +46,38 @@ template<class T> void List<T>::reverseList(){
     }
     //handling odd size
     if(first==0){
-        addEnd(removeFront());
+        addEndNode(removeFrontNode());
     }
 }
-template <class T> void List<T>::swap(Node<T>* n1,Node<T>* n2){
-    T temp = n1->getData();
+Node* List::removeFrontNode(){
+    if(head==NULL)
+        return NULL;
+    Node* temp = head;
+    head = head->nextNode;
+    temp->nextNode = NULL;
+    return temp;
+}
+void List::addEndNode(Node* n){
+    if(isEmpty()){
+         head = n;
+         n->nextNode = NULL;
+    }
+    Node* lastNode = head;
+    while((lastNode->nextNode)!=NULL){
+        lastNode = lastNode->nextNode;
+    }
+    lastNode->nextNode = n;
+    n->nextNode = NULL;
+}
+void List::swap(Node* n1,Node* n2){
+    float temp = n1->getData();
     n1->setData(n2->getData());
     n2->setData(temp);
 }
-template <class T> Node<T>* List<T>::getNode(int index){
+Node* List::getNode(int index){
     if((isEmpty())||(index<0))
         return NULL;
-    Node<T>* temp = head;
+    Node* temp = head;
     while(temp!=NULL){
         if(index==0)
             return temp;
@@ -66,50 +86,54 @@ template <class T> Node<T>* List<T>::getNode(int index){
     }
     return NULL;
 }
-template<class T> void List<T>::addFront(T data){
-    Node<T>* np = new Node<T>(data);
+void List::addFront(float data){
+    Node* np = new Node(data);
     //allocated right?
-    if(!np){
+
     np->setNextNode(head);
     head = np;
-    }
+
 }
-template<class T> T List<T>::removeFront(){
+float List::removeFront(){
     if(!isEmpty()){
-        T tmp = head->getData();
-        Node<T>* np = head;
+        float tmp = head->getData();
+        Node* np = head;
         head = head->getNextNode();
-        free(np);
+        delete(np);
         return tmp;
     }
+    return -1;
 }
-template<class T> void List<T>::addEnd(T data){
-    Node<T>* np = new Node<T>(data);
-    Node<T>* tmp = head;
+/* bayza
+void List::addEnd(float data){
+    Node* np = new Node(data);
+    Node* tmp = head;
     if(!isEmpty()){
-        while(tmp->getNextNode())
-            tmp = tmp->getNextNode();
+        while((tmp->nextNode)!=NULL)
+            tmp = tmp->nextNode;
         tmp->setNextNode(np);
     }
     else{
         head = np;
     }
 }
-template<class T> T List<T>::removeEnd(){
-    T value ;
+
+*/
+float List::removeEnd(){
+    float value ;
     if(isEmpty())
         value = -1;
-    Node<T>* tmp = head;
-    if(head->getNextNode()==NULL){
+    Node* tmp = head;
+    if(head->getNextNode()==NULL){  //one node only
         value = head->getData();
-        free(head);
+        delete(head);
         head = NULL;
     }
     else{
         while(((tmp->getNextNode())->getNextNode())!=NULL)
         tmp = tmp->getNextNode();
         //htl3 kda b l abl l a5ira = tmp
-        Node<T>* deletePtr = tmp->getNextNode();
+        Node* deletePtr = tmp->getNextNode();
         value = deletePtr->getData();
         tmp->setNextNode(NULL);
         delete(deletePtr);
@@ -132,42 +156,43 @@ template<class T> T List<T>::removeEnd(){
     }
     return value;
 }*/
-//assuming index starts from 1 not 0
-template<class T> void List<T>::add(int index,T data){
-    if(index==1){
+
+void List::add(int index,float data){
+    if(index==0){
         addFront(data);
         return;
     }
-    Node<T>* np = new Node<T>(data);
-    int i = 1;
-    Node<T>* prev = head;
-    while((prev->getNextNode())&&(index>i)){
+    Node* np = new Node(data);
+    int i = 0;
+    Node* prev = head;
+    while(prev!=NULL){
+          if((index-1)==i){
+            np->setNextNode(prev->getNextNode());
+            prev->setNextNode(np);
+          }
         prev=prev->getNextNode();
         i++;
     }
-    if(index>i)
-        return;
-    np->setNextNode(prev->getNextNode());
-    prev->setNextNode(np);
 }
-template<class T> void List<T>::remove(int index){
+
+void List::remove(int index){
     if(index==1)
         removeFront();
     int i = 1;
-    Node<T>* prev = head;
+    Node* prev = head;
     while((prev->getNextNode())&&(index>i)){
         prev=prev->getNextNode();
         i++;
     }
     if(index>i)
         return;
-    Node<T>* tmp = prev->getNextNode();
+    Node* tmp = prev->getNextNode();
     prev->setNextNode(tmp->getNextNode());
     delete(tmp);
 }
-template<class T> int List<T>::find(T data){
-    int i = 1;
-    Node<T>* tmp = head;
+ int List::find(float data){
+    int i = 0;
+    Node* tmp = head;
     while(tmp){
         if((tmp->getData())==data)
             return i;
@@ -176,24 +201,24 @@ template<class T> int List<T>::find(T data){
     }
     return -1;
 }
-template<class T> void List<T>::removeItem(T data){
+ void List::removeItem(float data){
     if (isEmpty()) return;
     int index = find(data);
-    if(index>0)
+    if(index>=0)
         remove(index);
 }
-template<class T> void List<T>::clear(){
-    Node<T>* tmp = head;
+void List::clear(){
+    Node* tmp = head;
     while(head){
         tmp = head->getNextNode();
         delete(head);
         head = tmp;
     }
 }
-template<class T> void List<T>::printALll(){
-    Node<T>* tmp = head;
-    while(tmp){
-        std::cout<<tmp->getData()<<std::endl;
+void List::printALll(){
+    Node* tmp = head;
+    while(tmp !=NULL){
+        std::cout<<tmp->getData()<<", ";
         tmp = tmp->getNextNode();
     }
 }
